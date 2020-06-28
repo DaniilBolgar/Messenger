@@ -86,7 +86,6 @@ public class MessagesFragment extends Fragment {
                                 for(User user1 : userList){
                                     if(!user.getUid().equals(user1.getUid())){
                                         userList.add(user);
-
                                     }
                                 }
                             } else{

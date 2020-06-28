@@ -93,6 +93,7 @@ public class ChatActivity extends AppCompatActivity {
                 if(!chatbox.getText().toString().matches("")){
                     savedMessage = chatbox.getText().toString();
                     sendMessage(savedMessage, user.getUid(), userId);
+                    chatbox.setText("");
                 } else{
                     Toast.makeText(getApplicationContext(),"Please send message", Toast.LENGTH_SHORT).show();
                 }
@@ -100,6 +101,8 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+
+
     private void sendMessage(String message, String sender, String recipient){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         HashMap<String,Object> hash = new HashMap<>();
