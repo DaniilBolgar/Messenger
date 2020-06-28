@@ -60,9 +60,19 @@ public class ChatActivity extends AppCompatActivity {
         linManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linManager);
 
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         intent = getIntent();
+        toolbar.setNavigationIcon(R.drawable.back_button);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
         String userId = intent.getStringExtra("userId");
         Log.d("chat",userId);
