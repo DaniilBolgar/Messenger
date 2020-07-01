@@ -4,14 +4,18 @@ public class Chat {
     private String sender;
     private String message;
     private String recipient;
+    private String type;
+    private String groupID;
 
     public Chat() {
     }
 
-    public Chat(String sender, String message, String recipient) {
+    public Chat(String sender, String message, String recipient, String type, String groupID) {
         this.sender = sender;
         this.message = message;
         this.recipient = recipient;
+        this.type = type;
+        this.groupID = groupID;
     }
 
     public String getSender() {
@@ -38,4 +42,19 @@ public class Chat {
         this.recipient = recipient;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
+    }
 }

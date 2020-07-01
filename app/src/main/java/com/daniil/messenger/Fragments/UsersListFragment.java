@@ -57,7 +57,7 @@ public class UsersListFragment extends Fragment {
                     }
                 }
                 if(listusers.size() != 0){
-                    usersAdapter = new UsersAdapter(getContext(),listusers);
+                    usersAdapter = new UsersAdapter(getContext(),listusers, null);
                     recyclerView.setAdapter(usersAdapter);
                     Log.d("list",listusers.get(0).getEmail());
                 }

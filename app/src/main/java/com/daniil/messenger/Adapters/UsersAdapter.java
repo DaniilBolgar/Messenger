@@ -23,6 +23,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
 
     private Context context;
     private List<User> userResults;
+    private List<String> chatType;
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,9 +40,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
             constraintLayout = mView.findViewById(R.id.userConstraintLayout);
         }
     }
-    public UsersAdapter(Context context, List<User> itemResults){
+    public UsersAdapter(Context context, List<User> itemResults, List<String> chatType){
         this.context = context;
         this.userResults = itemResults;
+        this.chatType = chatType;
     }
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,9 +55,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.CustomViewHo
     public void onBindViewHolder(CustomViewHolder holder, final int position) {
         Log.d("email",userResults.get(position).email);
         holder.userName.setText(userResults.get(position).getNick());
-        if(!userResults.get(position).getLinkPhoto().equals("default")){
-            Glide.with(context).load(userResults.get(position).getLinkPhoto()).into(holder.profilePic);
-        }
+            if(!userResults.get(position).getLinkPhoto().equals("default")) {
+                Glide.with(context).load(userResults.get(position).getLinkPhoto()).into(holder.profilePic);
+            }
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -63,7 +63,7 @@ public class RegisterProcess extends AppCompatActivity {
                             editor.putBoolean("authstate", true);
                             editor.commit();
 
-                            User user = new User(e,"default",fireuserID.getUid() ,n);
+                            User user = new User(e,"default",fireuserID.getUid() ,n,null);
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("");
                             //String id = myRef.child("users").push().getKey();

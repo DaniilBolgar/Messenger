@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.CustomVi
             super(itemView);
             mView = itemView;
             showMessage = mView.findViewById(R.id.message);
-            profilePic = mView.findViewById(R.id.userProfile);
+            profilePic = mView.findViewById(R.id.profileimage);
             constraintLayout = mView.findViewById(R.id.userConstraintLayout);
         }
     }
@@ -69,10 +70,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.CustomVi
         Chat chat = chatResults.get(position);
         holder.showMessage.setText(chat.getMessage());
         if(imageURL.equals("default")){
-            //Glide.with(context).load(R.drawable.defaultprofile).into(holder.profilePic);
+            Glide.with(context).load(R.drawable.defaultprofile).into(holder.profilePic);
         }
         else{
-            //Glide.with(context).load(imageURL).into(holder.profilePic);
+            Glide.with(context).load(imageURL).into(holder.profilePic);
         }
     }
 

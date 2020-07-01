@@ -119,6 +119,8 @@ public class ChatActivity extends AppCompatActivity {
         hash.put("sender",sender);
         hash.put("message",message);
         hash.put("recipient",recipient);
+        hash.put("type","private");
+        hash.put("groupID",null);
         reference.child("Chats").push().setValue(hash);
     }
     private void readMessage(String myID, String userID, String imageURL){
@@ -130,8 +132,10 @@ public class ChatActivity extends AppCompatActivity {
                 mchat.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chat chat = snapshot.getValue(Chat.class);
-                    if(chat.getRecipient().equals(myID) && chat.getSender().equals(userID) || chat.getRecipient().equals(userID) && chat.getSender().equals(myID)){
-                        mchat.add(chat);
+                    if(chat.getType().equals("private")){
+                        if(chat.getRecipient().equals(myID) && chat.getSender().equals(userID) || chat.getRecipient().equals(userID) && chat.getSender().equals(myID)){
+                            mchat.add(chat);
+                        }
                     }
                     messageAdapter = new MessageAdapter(getApplicationContext(),mchat,imageURL);
                     recyclerView.setAdapter(messageAdapter);

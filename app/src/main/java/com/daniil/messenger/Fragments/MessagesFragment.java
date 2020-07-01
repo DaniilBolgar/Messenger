@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.daniil.messenger.Adapters.UsersAdapter;
 import com.daniil.messenger.Models.Chat;
@@ -36,6 +37,7 @@ public class MessagesFragment extends Fragment {
     private FirebaseUser fUser;
     private DatabaseReference ref;
     private List<String> usernameList;
+    private List<String> chatType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,14 +55,15 @@ public class MessagesFragment extends Fragment {
                 usernameList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chat chat = snapshot.getValue(Chat.class);
-                    if(chat.getSender().equals(fUser.getUid())){
-                        usernameList.add(chat.getRecipient());
-                    }
-                    if(chat.getRecipient().equals(fUser.getUid())){
-                        usernameList.add(chat.getSender());
-                    }
+                    Toast.makeText(getContext(),chat.getType(),Toast.LENGTH_SHORT).show();
+                        if(chat.getSender().equals(fUser.getUid())){
+                            usernameList.add(chat.getRecipient());
+                        }
+                        if(chat.getRecipient().equals(fUser.getUid())){
+                            usernameList.add(chat.getSender());
+                        }
+                        readChat();
                 }
-                readChat();
             }
 
             @Override
@@ -78,6 +81,7 @@ public class MessagesFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
                     for(String id : usernameList){
@@ -101,7 +105,7 @@ public class MessagesFragment extends Fragment {
 
             }
         });
-        usersAdapter = new UsersAdapter(getContext(),userList);
+        usersAdapter = new UsersAdapter(getContext(),userList, chatType);
         recyclerView.setAdapter(usersAdapter);
     }
 }

@@ -1,18 +1,22 @@
 package com.daniil.messenger.Models;
 
+import java.util.List;
+
 public class User {
     public String email;
     public String linkPhoto;
     public String uid;
     public String nick;
+    public List<UserChats> userChats;
 
     public User(){}
 
-    public User(String email, String linkPhoto, String uid, String nick){
+    public User(String email, String linkPhoto, String uid, String nick, List<UserChats> userChats){
         this.email = email;
         this.linkPhoto = linkPhoto;
         this.uid = uid;
         this.nick = nick;
+        this.userChats = userChats;
     }
 
     public String getEmail() {
@@ -45,5 +49,13 @@ public class User {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    public List<UserChats> getUserChats() {
+        return userChats;
+    }
+
+    public void setUserChats(List<UserChats> userChats) {
+        this.userChats = userChats;
     }
 }
